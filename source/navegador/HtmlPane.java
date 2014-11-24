@@ -45,6 +45,7 @@ import java.awt.Dialog.ModalityType;
 import java.awt.Rectangle;
 import java.awt.Window;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,7 +74,9 @@ public class HtmlPane extends JEditorPane implements HyperlinkListener {
      * Cria um e exibe JDialog contendo uma pagina de html
      *
      * @param pai janela que fez a chamada
+     * @param titulo Titulo da janela que será exibida
      * @param page pagina html que será exibida
+     * @throws java.io.IOException para URL nulo ou inválido
      */
     public static void newHTMLDialog(Window pai, String titulo, URL page) throws IOException {
         JDialog frame = new JDialog(pai, titulo, ModalityType.APPLICATION_MODAL);
@@ -97,7 +100,7 @@ public class HtmlPane extends JEditorPane implements HyperlinkListener {
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
             try {
                 desktop.browse(url.toURI());
-            } catch (Exception e) {
+            } catch (URISyntaxException | IOException e) {
             }
         }
     }
@@ -134,6 +137,12 @@ public class HtmlPane extends JEditorPane implements HyperlinkListener {
         int fim = html.indexOf("</", inicio);
         String buscar = html.substring(inicio, fim);
         buscar = buscar.replaceAll("\n", "");
+        buscar = buscar.replaceAll("&#225;","á");
+        buscar = buscar.replaceAll("&#227;","ã");
+        buscar = buscar.replaceAll("&#231;","ç");
+        buscar = buscar.replaceAll("&#233;","é");
+        buscar = buscar.replaceAll("&#245;","õ");
+        //Removendo espaço em branco
         inicio = 0;
         while (buscar.charAt(inicio) == ' ') {
             inicio++;
@@ -151,7 +160,7 @@ public class HtmlPane extends JEditorPane implements HyperlinkListener {
             Logger.getLogger(HtmlPane.class.getName()).log(Level.SEVERE, null, ex);
         }
         int posicao = text.lastIndexOf(buscar);
-        if (posicao > 0) {
+        if (posicao > 20) {
             try {
                 Rectangle caretCoords = this.modelToView(posicao);
                 caretCoords.y += this.getParent().getHeight() - caretCoords.height;

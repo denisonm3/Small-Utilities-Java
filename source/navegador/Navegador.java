@@ -73,11 +73,12 @@ public class Navegador extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(htmlPane1);
 
-        jButtonGo.setBackground(new java.awt.Color(102, 255, 102));
+        jButtonGo.setBackground(new java.awt.Color(0, 255, 0));
         jButtonGo.setFont(new java.awt.Font("Wide Latin", 1, 14)); // NOI18N
         jButtonGo.setForeground(new java.awt.Color(0, 153, 102));
         jButtonGo.setText("GO");
-        jButtonGo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 0), 3, true));
+        jButtonGo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonGo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonGo.setOpaque(false);
         jButtonGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +86,12 @@ public class Navegador extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("https://www.google.com.br");
+        jTextField1.setText("http://gspd.dcce.ibilce.unesp.br/gspdc1/");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +136,10 @@ public class Navegador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonGoActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        jButtonGoActionPerformed(null);
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -173,7 +183,7 @@ public class Navegador extends javax.swing.JFrame {
         if (b) {
             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             jButtonGo.setBackground(Color.RED);
-            jButtonGo.setText("Waint");
+            jButtonGo.setText(" . . . ");
         } else {
             jButtonGo.setBackground(Color.GREEN);
             jButtonGo.setText("GO");
