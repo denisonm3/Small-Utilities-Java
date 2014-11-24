@@ -77,16 +77,15 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
 /**
- * Estilo de texto para visualizar código Java Após ser instanciado deve chamar
- * o método: configurarTextComponent(JTextComponent) Como esse método o
- * componente de texto será configurado
- *
+ * Estilo de texto para visualizar código Java
+ * Após ser instanciado deve chamar o método:
+ *      configurarTextComponent(JTextComponent)
+ * Com esse método o componente de texto será configurado
  * @author Denison
  */
 public class DocumentColor extends DefaultStyledDocument implements CaretListener {
 
-    private Element rootElement;
-    // RegEx, Color, Bold, Italics
+    private final Element rootElement;
     private final String[] keywords = {
         "\\bfor\\b",
         "\\bif\\b",
@@ -110,13 +109,16 @@ public class DocumentColor extends DefaultStyledDocument implements CaretListene
         "\\bpackage\\b",
         "\\bimport\\b",
         "\\bclass\\b",
-        "\\bextends\\b"};
+        "\\bextends\\b",
+        "\\btrue\\b",
+        "\\bfalse\\b"
+    };
     private final String[] keyStrings = {
         "\"(.*)\"",
         "(\'.\')",
         "(\'..\')"};
     private final String keyNumbers = "\\b[0-9]+\\b";
-    private MutableAttributeSet style;
+    private final MutableAttributeSet style;
     private final Color defaultStyle = Color.black;
     private final Color commentStyle = Color.lightGray;
     private final Color keyStyle = Color.blue;
@@ -127,8 +129,8 @@ public class DocumentColor extends DefaultStyledDocument implements CaretListene
     private final Pattern multiCommentDelimEnd = Pattern.compile("\\*/");
     private final Font font;
     //Desenha linhas
-    private JTextArea BarraNumLinhas;
-    private JLabel BarraPosCursor;
+    private final JTextArea BarraNumLinhas;
+    private final JLabel BarraPosCursor;
     private Integer numeroLinhas;
     //Popup para auto completar
     private JPopupMenu popup;
@@ -331,7 +333,7 @@ public class DocumentColor extends DefaultStyledDocument implements CaretListene
         int inicio = ce.getDot();
         int fim = ce.getMark();
         JTextComponent jTexto = (JTextComponent) ce.getSource();
-        String textoSelecionado = "";
+        String textoSelecionado;
 
         if (inicio == fim) {// no selection
             try {
@@ -345,19 +347,22 @@ public class DocumentColor extends DefaultStyledDocument implements CaretListene
                 inicio = ce.getMark();
                 fim = ce.getDot();
             }
-            try {
-                textoSelecionado = "\\b" + this.getText(inicio, fim - inicio) + "\\b";
-                processChangedLines(0, 0);
-                //Marcar texto igual ao texto selecionado
-                StyleConstants.setForeground(style, Color.BLACK);
-                StyleConstants.setBackground(style, Color.YELLOW);
-                Pattern p = Pattern.compile(textoSelecionado);
-                Matcher m = p.matcher(jTexto.getText());
-                while (m.find()) {
-                    setCharacterAttributes(m.start(), m.end() - m.start(), style, true);
+            if(fim-inicio > 1 && fim-inicio < 50) {
+                try {
+                    textoSelecionado = "\\b" + this.getText(inicio, fim - inicio) + "\\b";
+                    processChangedLines(0, 0);
+                    //Marcar texto igual ao texto selecionado
+                    StyleConstants.setForeground(style, Color.BLACK);
+                    StyleConstants.setBackground(style, Color.YELLOW);
+                    Pattern p = Pattern.compile(textoSelecionado);
+                    Matcher m = p.matcher(jTexto.getText());
+                    while (m.find()) {
+                        setCharacterAttributes(m.start(), m.end() - m.start(), style, true);
+                    }
+                    StyleConstants.setBackground(style, Color.WHITE);
+                } catch (Exception ex) {
+                    StyleConstants.setBackground(style, Color.WHITE);
                 }
-                StyleConstants.setBackground(style, Color.WHITE);
-            } catch (Exception ex) {
             }
             BarraPosCursor.setText("selection from: " + inicio + " to " + fim + " ");
         }
