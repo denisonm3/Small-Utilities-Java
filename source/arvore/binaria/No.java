@@ -1,136 +1,167 @@
 package arvore.binaria;
 
-
 import java.util.ArrayList;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author denison_usuario
+ * Arvore binária
+ * @author Denison
  */
 public class No {
+
+    private final Boolean raiz;
     private No Direito = null;
     private No Esquerdo = null;
-    private Integer valor = null;
+    private Comparable valor = null;
 
-    private No(int i) {
-        valor = i;
+    /**
+     * Create a leaf node of the tree
+     * @param valor value of the node
+     */
+    public No(Object valor) {
+        this.valor = (Comparable) valor;
+        raiz = false;
     }
 
-    No() {}
+    /**
+     * Create a root node of the tree
+     */
+    public No() {
+        raiz = true;
+    }
 
-    public void inserirRaiz(int i) {
+    /**
+     * Insere um elemento na arvore e retorna a mensagem
+     *
+     * @param element
+     * @return
+     */
+    public String msgAdd(Object element) {
         //inserir raiz
-        if(valor == null){
-            valor = i;
-        }else{
+        if (valor == null) {
+            valor = (Comparable) element;
+            return "[raiz]\n";
+        } else {
             //inserir folha
-            if(valor <= i && Direito == null){
-                No aux = new No(i);
+            if (valor.compareTo(element) <= 0 && Direito == null) {
+                No aux = new No(element);
                 Direito = aux;
-            }else if(valor <= i && Direito != null){
-                Direito.inserir(i);
-            }else if(valor > i && Esquerdo == null){
-                No aux = new No(i);
+            } else if (valor.compareTo(element) <= 0 && Direito != null) {
+                Direito.add(element);
+            } else if (valor.compareTo(element) > 0 && Esquerdo == null) {
+                No aux = new No(element);
                 Esquerdo = aux;
-            }else if(valor > i && Esquerdo != null){
-                Esquerdo.inserir(i);
+            } else if (valor.compareTo(element) > 0 && Esquerdo != null) {
+                Esquerdo.add(element);
             }
             //após inserir ficou desequilibrada
-            int hE = altura(Esquerdo,0);
-            System.out.println("esq: "+hE);
-            int hD = altura(Direito,0);
-            System.out.println("dir: "+hD);
-            if (hE - hD > 1 || hE - hD < -1 ) {
-                System.out.println("Desequilibrado!");
+            String retorno;
+            int hE = altura(Esquerdo, 0);
+            retorno = ("[esq: " + hE + "]");
+            int hD = altura(Direito, 0);
+            retorno += ("[dir: " + hD + "]");
+            if (hE - hD > 1 || hE - hD < -1) {
+                retorno += (" -> Desequilibrado!");
+            }
+            retorno += "\n";
+            return retorno;
+        }
+    }
+
+    public void add(No element) {
+        //inserir raiz
+        if (valor == null) {
+            throw new IllegalArgumentException("não é possivel inserir nó na raiz!");
+        } else if (element.equals(this) || element.Esquerdo != null || element.Direito != null) {
+            throw new IllegalArgumentException("Elemento já foi conectado!");
+        } else {
+            //inserir folha
+            if (valor.compareTo(element.valor) <= 0 && Direito == null) {
+                Direito = element;
+            } else if (valor.compareTo(element.valor) <= 0 && Direito != null) {
+                Direito.add(element);
+            } else if (valor.compareTo(element.valor) > 0 && Esquerdo == null) {
+                Esquerdo = element;
+            } else if (valor.compareTo(element.valor) > 0 && Esquerdo != null) {
+                Esquerdo.add(element);
             }
         }
     }
 
-    public void inserir(int i) {
+    public void add(Object element) {
         //inserir raiz
-        if(valor == null){
-            valor = i;
-        }else{
+        if (valor == null) {
+            valor = (Comparable) element;
+        } else {
             //inserir folha
-            if(valor <= i && Direito == null){
-                No aux = new No(i);
+            if (valor.compareTo(element) <= 0 && Direito == null) {
+                No aux = new No(element);
                 Direito = aux;
-            }else if(valor <= i && Direito != null){
-                Direito.inserir(i);
-            }else if(valor > i && Esquerdo == null){
-                No aux = new No(i);
+            } else if (valor.compareTo(element) <= 0 && Direito != null) {
+                Direito.add(element);
+            } else if (valor.compareTo(element) > 0 && Esquerdo == null) {
+                No aux = new No(element);
                 Esquerdo = aux;
-            }else if(valor > i && Esquerdo != null){
-                Esquerdo.inserir(i);
+            } else if (valor.compareTo(element) > 0 && Esquerdo != null) {
+                Esquerdo.add(element);
             }
         }
     }
-    
+
     private int altura(No item, int nivel) {
         int esq, dir;
-        if(item == null){
+        if (item == null) {
             return nivel;
-        }else{
-            esq = altura(item.Esquerdo,nivel+1);
-            dir = altura(item.Direito,nivel+1);
-            if (esq > dir)
+        } else {
+            esq = altura(item.Esquerdo, nivel + 1);
+            dir = altura(item.Direito, nivel + 1);
+            if (esq > dir) {
                 return esq;
-            else
+            } else {
                 return dir;
+            }
         }
     }
 
-    void escrever() {
-        ArrayList<Object[]> itens = new ArrayList<Object[]>();
-        itens = getTexto(this, 0, 0);
-        int maior = -1;
-        for (Object[] objects : itens) {
-            if(maior < (Integer)objects[1]){
-                maior = (Integer)objects[1];
-            }
-        }
-        ArrayList<String> linhas = new ArrayList<String>();
-        for (int i = 0; i < maior+1; i++) {
-            linhas.add("");
-        }
-        for (Object[] objects : itens) {
-            linhas.set((Integer)objects[1], linhas.get((Integer)objects[1])+" "+objects[2]+" "+objects[0]);
-        }
-        for (String string : linhas) {
-            System.out.println(string);
-        }
-    }
-    
-    private ArrayList<Object[]> getTexto(No item,int nivel, int lado) {
-        if(item != null){
-            ArrayList<Object[]> objs = new ArrayList<Object[]>();
-            Object[] obj = new Object[3];
-            obj[0] = item.getValor();
-            obj[1] = nivel;
-            obj[2] = lado;
-            objs.add(obj);
-            if(item.Esquerdo != null){
-                objs.addAll(getTexto(item.Esquerdo, nivel+1, lado-1));
-            }
-            if(item.Direito != null){
-                objs.addAll(getTexto(item.Direito, nivel+1, lado+1));
-            }
-            return objs;
-        }
-        return null;
-    }
-
-    private Integer getValor() {
+    public Object getValor() {
         return valor;
     }
-    
+
     @Override
-    public String toString(){
-        return "lol " + super.toString() + " DD";
+    public String toString() {
+        if (raiz) {
+            String arvore = "";
+            int nivel = 0;
+            ArrayList<No> linha;
+            ArrayList<No> proxLinha = new ArrayList<>();
+            proxLinha.add(this);
+            do {
+                linha = proxLinha;
+                proxLinha = new ArrayList<>();
+                for (No prox : linha) {
+                    int hE = altura(prox, 0);
+                    String espaco = "";
+                    while (hE > 0) {
+                        espaco += "\t";
+                        hE--;
+                    }
+                    if (prox.Esquerdo != null) {
+                        espaco += "<-";
+                    }
+                    arvore += espaco + "[" + prox.valor + "]";
+                    if (prox.Esquerdo != null) {
+                        proxLinha.add(prox.Esquerdo);
+                    }
+                    if (prox.Direito != null) {
+                        arvore += "->";
+                        proxLinha.add(prox.Direito);
+                    }
+                }
+                arvore += "\n";
+                nivel++;
+            } while (proxLinha.size() > 0);
+            return arvore;
+        } else {
+            return super.toString();
+        }
     }
 }
