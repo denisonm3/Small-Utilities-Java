@@ -45,88 +45,97 @@ public class JImagem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton5 = new javax.swing.JButton();
-        jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLabel1 = new javax.swing.JLabel();
-
-        jButton5.setText("jButton5");
+        jToolBar = new javax.swing.JToolBar();
+        jButtonHorizontal = new javax.swing.JButton();
+        jButtonVertical = new javax.swing.JButton();
+        jButtonFlip90 = new javax.swing.JButton();
+        jButtonRotate = new javax.swing.JButton();
+        jSpinner = new javax.swing.JSpinner();
+        jButtonZoomIn = new javax.swing.JButton();
+        jButtonZoomOut = new javax.swing.JButton();
+        jScrollPane = new javax.swing.JScrollPane();
+        jLabelImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jToolBar1.setFloatable(false);
-        jToolBar1.setRollover(true);
+        jToolBar.setFloatable(false);
+        jToolBar.setRollover(true);
 
-        jButton1.setText("horizontal flip");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonHorizontal.setText("horizontal flip");
+        jButtonHorizontal.setFocusable(false);
+        jButtonHorizontal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonHorizontal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonHorizontal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonHorizontalActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jToolBar.add(jButtonHorizontal);
 
-        jButton2.setText("vertical flip");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVertical.setText("vertical flip");
+        jButtonVertical.setFocusable(false);
+        jButtonVertical.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonVertical.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonVertical.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonVerticalActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton2);
+        jToolBar.add(jButtonVertical);
 
-        jButton3.setText("rotate");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFlip90.setText("90º flip");
+        jButtonFlip90.setFocusable(false);
+        jButtonFlip90.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonFlip90.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonFlip90.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonFlip90ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton3);
+        jToolBar.add(jButtonFlip90);
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1.0f), null, null, Float.valueOf(1.0f)));
-        jSpinner1.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinner1, "#,#"));
-        jSpinner1.setMinimumSize(new java.awt.Dimension(60, 20));
-        jSpinner1.setPreferredSize(new java.awt.Dimension(60, 20));
-        jToolBar1.add(jSpinner1);
-
-        jButton4.setText("zoom in");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRotate.setText("rotate");
+        jButtonRotate.setFocusable(false);
+        jButtonRotate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonRotate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonRotate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonRotateActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton4);
+        jToolBar.add(jButtonRotate);
 
-        jButton6.setText("zoom out");
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jSpinner.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1.0f), null, null, Float.valueOf(1.0f)));
+        jSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinner, "#,#"));
+        jSpinner.setMinimumSize(new java.awt.Dimension(60, 20));
+        jSpinner.setPreferredSize(new java.awt.Dimension(60, 20));
+        jToolBar.add(jSpinner);
+
+        jButtonZoomIn.setText("zoom in");
+        jButtonZoomIn.setFocusable(false);
+        jButtonZoomIn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonZoomIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonZoomIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonZoomInActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton6);
+        jToolBar.add(jButtonZoomIn);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/huehuehue.png"))); // NOI18N
-        jScrollPane1.setViewportView(jLabel1);
+        jButtonZoomOut.setText("zoom out");
+        jButtonZoomOut.setFocusable(false);
+        jButtonZoomOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonZoomOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonZoomOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonZoomOutActionPerformed(evt);
+            }
+        });
+        jToolBar.add(jButtonZoomOut);
+
+        jLabelImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/huehuehue.png"))); // NOI18N
+        jScrollPane.setViewportView(jLabelImagem);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,37 +143,37 @@ public class JImagem extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane)
                 .addContainerGap())
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Image oldImage = ((ImageIcon) jLabel1.getIcon()).getImage();
+    private void jButtonHorizontalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHorizontalActionPerformed
+        Image oldImage = ((ImageIcon) jLabelImagem.getIcon()).getImage();
         int width = oldImage.getWidth(null);
         int height = oldImage.getHeight(null);
         // Create a new Image
         BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         // Flip the old image horizontally
         newImage.getGraphics().drawImage(oldImage, 0, 0, width, height, 0, height, width, 0, null);
-        ((ImageIcon) jLabel1.getIcon()).setImage(newImage);
-        jLabel1.repaint();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        ((ImageIcon) jLabelImagem.getIcon()).setImage(newImage);
+        jLabelImagem.repaint();
+    }//GEN-LAST:event_jButtonHorizontalActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Float value = (Float) jSpinner1.getValue();
-        Image oldImage = ((ImageIcon) jLabel1.getIcon()).getImage();
+    private void jButtonRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRotateActionPerformed
+        Float value = (Float) jSpinner.getValue();
+        Image oldImage = ((ImageIcon) jLabelImagem.getIcon()).getImage();
         int width = rotateSize;//oldImage.getWidth(null);
         int height = rotateSize;//oldImage.getHeight(null);
         // Create a new Image
@@ -183,45 +192,63 @@ public class JImagem extends javax.swing.JFrame {
             g2d.drawImage(oldImage, 0, 0, null);
         }
         //Set and repaint the component
-        ((ImageIcon) jLabel1.getIcon()).setImage(newImage);
-        jLabel1.repaint();
-    }//GEN-LAST:event_jButton3ActionPerformed
+        ((ImageIcon) jLabelImagem.getIcon()).setImage(newImage);
+        jLabelImagem.repaint();
+    }//GEN-LAST:event_jButtonRotateActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Image oldImage = ((ImageIcon) jLabel1.getIcon()).getImage();
+    private void jButtonVerticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerticalActionPerformed
+        Image oldImage = ((ImageIcon) jLabelImagem.getIcon()).getImage();
         int width = oldImage.getWidth(null);
         int height = oldImage.getHeight(null);
         // Create a new Image
         BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         // Flip the old image horizontally
         newImage.getGraphics().drawImage(oldImage, 0, 0, width, height, width, 0, 0, height, null);
-        ((ImageIcon) jLabel1.getIcon()).setImage(newImage);
-        jLabel1.repaint();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        ((ImageIcon) jLabelImagem.getIcon()).setImage(newImage);
+        jLabelImagem.repaint();
+    }//GEN-LAST:event_jButtonVerticalActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Image oldImage = ((ImageIcon) jLabel1.getIcon()).getImage();
+    private void jButtonZoomInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZoomInActionPerformed
+        Image oldImage = ((ImageIcon) jLabelImagem.getIcon()).getImage();
         int width = (int) (oldImage.getWidth(null) * 1.1);
         int height =(int) (oldImage.getHeight(null) * 1.1);
         // Create a new Image
         BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         // Zoom in the image
         newImage.getGraphics().drawImage(oldImage, 0, 0, width, height, null);
-        ((ImageIcon) jLabel1.getIcon()).setImage(newImage);
-        jLabel1.repaint();
-    }//GEN-LAST:event_jButton4ActionPerformed
+        ((ImageIcon) jLabelImagem.getIcon()).setImage(newImage);
+        jLabelImagem.repaint();
+    }//GEN-LAST:event_jButtonZoomInActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Image oldImage = ((ImageIcon) jLabel1.getIcon()).getImage();
+    private void jButtonZoomOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZoomOutActionPerformed
+        Image oldImage = ((ImageIcon) jLabelImagem.getIcon()).getImage();
         int width = (int) (oldImage.getWidth(null) * 0.9);
         int height =(int) (oldImage.getHeight(null) * 0.9);
         // Create a new Image
         BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         // Zoom out the image
         newImage.getGraphics().drawImage(oldImage, 0, 0, width, height, null);
-        ((ImageIcon) jLabel1.getIcon()).setImage(newImage);
-        jLabel1.repaint();
-    }//GEN-LAST:event_jButton6ActionPerformed
+        ((ImageIcon) jLabelImagem.getIcon()).setImage(newImage);
+        jLabelImagem.repaint();
+    }//GEN-LAST:event_jButtonZoomOutActionPerformed
+
+    private void jButtonFlip90ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFlip90ActionPerformed
+        Image oldImage = ((ImageIcon) jLabelImagem.getIcon()).getImage();
+        int width = oldImage.getHeight(null);
+        int height = oldImage.getWidth(null);
+        // Create a new Image
+        BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = (Graphics2D) newImage.getGraphics();
+        // Flip the old image 90º
+            int oldW = oldImage.getWidth(null);
+            int oldH = oldImage.getHeight(null);
+            g2d.translate(width / 2, height / 2);
+            g2d.rotate(Math.toRadians(90));
+            g2d.translate(-(oldW / 2), -(oldH / 2));
+            g2d.drawImage(oldImage, 0, 0, null);
+        ((ImageIcon) jLabelImagem.getIcon()).setImage(newImage);
+        jLabelImagem.repaint();
+    }//GEN-LAST:event_jButtonFlip90ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,19 +266,14 @@ public class JImagem extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JImagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JImagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JImagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JImagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new JImagem().setVisible(true);
             }
@@ -259,22 +281,22 @@ public class JImagem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton jButtonFlip90;
+    private javax.swing.JButton jButtonHorizontal;
+    private javax.swing.JButton jButtonRotate;
+    private javax.swing.JButton jButtonVertical;
+    private javax.swing.JButton jButtonZoomIn;
+    private javax.swing.JButton jButtonZoomOut;
+    private javax.swing.JLabel jLabelImagem;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JSpinner jSpinner;
+    private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
 
     private void calcRotateSize() {
-        rotateSize = jLabel1.getIcon().getIconWidth();
-        if (rotateSize < jLabel1.getIcon().getIconHeight()) {
-            rotateSize = jLabel1.getIcon().getIconHeight();
+        rotateSize = jLabelImagem.getIcon().getIconWidth();
+        if (rotateSize < jLabelImagem.getIcon().getIconHeight()) {
+            rotateSize = jLabelImagem.getIcon().getIconHeight();
         }
         Double digonal = (double) (rotateSize * rotateSize + rotateSize * rotateSize);
         digonal = Math.sqrt(digonal);
