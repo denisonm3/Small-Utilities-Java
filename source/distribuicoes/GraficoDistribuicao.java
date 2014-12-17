@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -61,9 +62,11 @@ public class GraficoDistribuicao extends javax.swing.JFrame {
                 desenhar(g);
             }
         };
+        jCheckBoxSet = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
         jButtonUniforme.setText("Uniforme");
@@ -125,27 +128,36 @@ public class GraficoDistribuicao extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 505, Short.MAX_VALUE)
         );
 
+        jCheckBoxSet.setText("Set values");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxSet))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBoxSet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
 
         pack();
@@ -154,56 +166,142 @@ public class GraficoDistribuicao extends javax.swing.JFrame {
     private void jButtonNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNormalActionPerformed
         Distribution gerador = new Distribution();
         ArrayList<Integer> sort = new ArrayList();
-        //Realiza sorteio
-        for (int i = 0; i < TAMANHO; i++) {
-            //Normal
-            sort.add((int) gerador.nextNormal(300.0, 20.0));
+        Integer number = TAMANHO;
+        Double media = 300.0;
+        Double desvio = 20.0;
+        if (jCheckBoxSet.isSelected()) {
+            try {
+                String temp = JOptionPane.showInputDialog(this, "Set average:");
+                media = Double.valueOf(temp);
+                temp = JOptionPane.showInputDialog(this, "Set standard deviation:");
+                desvio = Double.valueOf(temp);
+                temp = JOptionPane.showInputDialog(this, "Set number of points");
+                number = Integer.valueOf(temp);
+                if (number < 1) {
+                    number = TAMANHO;
+                    throw new NumberFormatException("Number must be positive!");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Could not convert:" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        gerarDensidade(sort);
+        //Realiza sorteio
+        for (int i = 0; i < number; i++) {
+            //Normal
+            sort.add((int) gerador.nextNormal(media, desvio));
+        }
+        gerarDensidade(sort, number);
     }//GEN-LAST:event_jButtonNormalActionPerformed
 
     private void jButtonExponencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExponencialActionPerformed
         Distribution gerador = new Distribution();
         ArrayList<Integer> sort = new ArrayList();
-        //Realiza sorteio
-        for (int i = 0; i < TAMANHO; i++) {
-            //Normal
-            sort.add((int) gerador.nextExponential(30.0));
+        Double lambda = 30.0;
+        int number = TAMANHO;
+        if (jCheckBoxSet.isSelected()) {
+            try {
+                String temp = JOptionPane.showInputDialog(this, "Set lambda:");
+                lambda = Double.valueOf(temp);
+                temp = JOptionPane.showInputDialog(this, "Set number of points");
+                number = Integer.valueOf(temp);
+                if (number < 1) {
+                    number = TAMANHO;
+                    throw new NumberFormatException("Number must be positive!");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Could not convert:" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        gerarDensidade(sort);
+        //Realiza sorteio
+        for (int i = 0; i < number; i++) {
+            //Normal
+            sort.add((int) gerador.nextExponential(lambda));
+        }
+        gerarDensidade(sort, number);
     }//GEN-LAST:event_jButtonExponencialActionPerformed
 
     private void jButtonUniformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUniformeActionPerformed
         Distribution gerador = new Distribution();
         ArrayList<Integer> sort = new ArrayList();
-        //Realiza sorteio
-        for (int i = 0; i < TAMANHO; i++) {
-            //Normal
-            sort.add(gerador.nextInt(590));
+        int interval = 590;
+        int number = TAMANHO;
+        if (jCheckBoxSet.isSelected()) {
+            try {
+                String temp = JOptionPane.showInputDialog(this, "Set interval 0 to:");
+                interval = Integer.valueOf(temp);
+                temp = JOptionPane.showInputDialog(this, "Set number of points");
+                number = Integer.valueOf(temp);
+                if (number < 1) {
+                    number = TAMANHO;
+                    throw new NumberFormatException("Number must be positive!");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Could not convert:" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        gerarDensidade(sort);
+        //Realiza sorteio
+        for (int i = 0; i < number; i++) {
+            //Normal
+            sort.add(gerador.nextInt(interval));
+        }
+        gerarDensidade(sort, number);
     }//GEN-LAST:event_jButtonUniformeActionPerformed
 
     private void jButtonPoissonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPoissonActionPerformed
         Distribution gerador = new Distribution();
         ArrayList<Integer> sort = new ArrayList();
-        //Realiza sorteio
-        for (int i = 0; i < TAMANHO; i++) {
-            //Normal
-            sort.add(gerador.nextPoisson(40));
+        Double lambda = 40.0;
+        Integer number = TAMANHO;
+        if (jCheckBoxSet.isSelected()) {
+            try {
+                String temp = JOptionPane.showInputDialog(this, "Set lambda:");
+                lambda = Double.valueOf(temp);
+                temp = JOptionPane.showInputDialog(this, "Set number of points");
+                number = Integer.valueOf(temp);
+                if (number < 1) {
+                    number = TAMANHO;
+                    throw new NumberFormatException("Number must be positive!");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Could not convert:" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        gerarDensidade(sort);
+        //Realiza sorteio
+        for (int i = 0; i < number; i++) {
+            //Normal
+            sort.add(gerador.nextPoisson(lambda));
+        }
+        gerarDensidade(sort, number);
     }//GEN-LAST:event_jButtonPoissonActionPerformed
 
     private void jButtonWeibullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWeibullActionPerformed
         Distribution gerador = new Distribution();
         ArrayList<Integer> sort = new ArrayList();
-        //Realiza sorteio
-        for (int i = 0; i < TAMANHO; i++) {
-            //Normal
-            sort.add((int) gerador.nextWeibull(60.0, 1.5));
+        Integer number = TAMANHO;
+        Double scale = 60.0;
+        Double shape = 1.5;
+        if (jCheckBoxSet.isSelected()) {
+            try {
+                String temp = JOptionPane.showInputDialog(this, "Set scale:");
+                scale = Double.valueOf(temp);
+                temp = JOptionPane.showInputDialog(this, "Set shape:");
+                shape = Double.valueOf(temp);
+                temp = JOptionPane.showInputDialog(this, "Set number of points");
+                number = Integer.valueOf(temp);
+                if (number < 1) {
+                    number = TAMANHO;
+                    throw new NumberFormatException("Number must be positive!");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Could not convert:" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        gerarDensidade(sort);
+        //Realiza sorteio
+        for (int i = 0; i < number; i++) {
+            //Normal
+            sort.add((int) gerador.nextWeibull(scale, shape));
+        }
+        gerarDensidade(sort, number);
     }//GEN-LAST:event_jButtonWeibullActionPerformed
 
     /**
@@ -257,11 +355,10 @@ public class GraficoDistribuicao extends javax.swing.JFrame {
         g.drawString("S", 1, 286);
         g.drawLine(10, 0, 10, 500);
         g.setColor(Color.red);
-        System.out.println("\nTam "+densidade.size());
         for (Map.Entry<Integer, Integer> entrySet : densidade.entrySet()) {
             Integer valor = entrySet.getKey();
             Integer repete = entrySet.getValue();
-            g.drawString("°", valor+10, 490-repete);
+            g.drawString("°", valor + 10, 490 - repete);
         }
     }
 
@@ -271,15 +368,16 @@ public class GraficoDistribuicao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonPoisson;
     private javax.swing.JButton jButtonUniforme;
     private javax.swing.JButton jButtonWeibull;
+    private javax.swing.JCheckBox jCheckBoxSet;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
-    private void gerarDensidade(ArrayList<Integer> sort) {
+    private void gerarDensidade(ArrayList<Integer> sort, int tam) {
         Collections.sort(sort);
         //Insere na densidade
         densidade.clear();
-        for (int i = 0; i < TAMANHO; i++) {
+        for (int i = 0; i < tam; i++) {
             int valor = sort.get(i);
             if (densidade.containsKey(valor)) {
                 densidade.put(valor, densidade.get(valor) + 1);
